@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core"
+	xmlns:doc="http://www.mulesoft.org/schema/mule/documentation"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd">
+	
+	<http:listener-config name="HTTPListenerConfig" doc:name="HTTP Listener config" doc:id="43defcd8-df02-40c1-897f-4728f04b71b0" >
+		<http:listener-connection host="0.0.0.0" port="8081" />
+	</http:listener-config>
+	
+	<flow name="appmulesoftFlow" doc:id="08ad3dd3-33cf-4523-9746-2fd6fdfd55a8" >
+		<http:listener doc:name="Listener" doc:id="3f27f315-108a-4209-92df-55eb6736355f" config-ref="HTTPListenerConfig" path="/service/mock" allowedMethods="GET" outputMimeType="application/json"/>
+		<logger level="INFO" doc:name="Logger" doc:id="e1ae7fde-25cf-41f6-819c-b3ab45bd630b" message="This is a test"/>
+		<set-payload value='"{"code":"AXB-001","country":"VEN"}"' doc:name="Set Payload" doc:id="c667d791-d72a-4daa-9c16-82b75f92f6fa" mimeType="application/json"/>
+	</flow>
+	
+</mule>
